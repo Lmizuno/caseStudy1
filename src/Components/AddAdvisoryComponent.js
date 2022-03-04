@@ -22,7 +22,7 @@ const AddAdvisoryComponent = () => {
   const reducer = (state, newState) => ({ ...state, ...newState });
   const [state, setState] = useReducer(reducer, initialState);
   const [travelersName, setTravelersName] = useState("");
-  const [countryOfChoice, setCountryOfChoice] = useState("");
+  // const [countryOfChoice, setCountryOfChoice] = useState("");
 
   const snackbarClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -35,33 +35,33 @@ const AddAdvisoryComponent = () => {
     });
   };
 
-  const fetchCountries = async () => {
-    try {
-      setState({
-        contactServer: true,
-        snackBarMsg: "Running Setup...",
-      });
+  // const fetchCountries = async () => {
+  //   try {
+  //     setState({
+  //       contactServer: true,
+  //       snackBarMsg: "Running Setup...",
+  //     });
 
-      let response = await fetch("http://localhost:5000/graphql", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify({ query: "query{countries}" }),
-      });
-      let json = await response.json();
+  //     let response = await fetch("http://localhost:5000/graphql", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json; charset=utf-8",
+  //       },
+  //       body: JSON.stringify({ query: "query{countries}" }),
+  //     });
+  //     let json = await response.json();
 
-      setState({
-        contactServer: true,
-        countries: json.data.countries,
-      });
-    } catch (error) {
-      console.log(error);
-      setState({
-        msg: `Problem loading server data - ${error.message}`,
-      });
-    }
-  };
+  //     setState({
+  //       contactServer: true,
+  //       countries: json.data.countries,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     setState({
+  //       msg: `Problem loading server data - ${error.message}`,
+  //     });
+  //   }
+  // };
 
   // const addAdvisory = async () =>{
   //   let response = await fetch("http://localhost:5000/graphql", {
@@ -80,7 +80,7 @@ const AddAdvisoryComponent = () => {
   // };
 
   useEffect(() => {
-    fetchCountries();
+    //fetchCountries();
   }, []);
 
   return (
@@ -105,12 +105,12 @@ const AddAdvisoryComponent = () => {
             onChange={setTravelersName}
             label="Traveler's Name"
           />
-          <Autocomplete
+          {/* <Autocomplete
             options={state.countries}
             value={countryOfChoice}
             onChange={setCountryOfChoice}
             renderInput={(params) => <TextField {...params} label="Country" />}
-          />
+          /> */}
 
           {/* <Button onClick={addAdvisory}>ADD ADVISORY</Button> */}
         </CardContent>
